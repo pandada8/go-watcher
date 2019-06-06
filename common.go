@@ -156,8 +156,9 @@ func existIn(search string, in []string) bool {
 
 func removeFile(fileName string) {
 	if fileName != "" {
-		cmd := exec.Command("rm", fileName)
-		cmd.Run()
-		cmd.Wait()
+		err := os.Remove(fileName)
+		if err != nil {
+			log.Println("Fail to remove", fileName, err)
+		}
 	}
 }
