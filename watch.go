@@ -140,6 +140,11 @@ func (w *Watcher) watchFolders() {
 			return nil
 		}
 
+		// FIXME: controll pattern
+		if info.Name() == "node_modules" {
+			return filepath.SkipDir
+		}
+
 		if !w.watchVendor {
 			// skip vendor directory
 			vendor := fmt.Sprintf("%s/vendor", wd)
